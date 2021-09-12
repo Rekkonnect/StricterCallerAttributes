@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <PackageId>StricterCallerAttributes</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Alex Kalfakakos</Authors>
     <RepositoryUrl>https://github.com/AlFasGD/StricterCallerAttributes</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
