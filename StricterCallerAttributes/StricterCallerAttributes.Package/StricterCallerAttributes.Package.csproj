@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>StricterCallerAttributes</PackageId>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <Authors>Alex Kalfakakos</Authors>
+    <RepositoryUrl>https://github.com/AlFasGD/StricterCallerAttributes</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>A Roslyn analyzer that prevents substituting optional method parameters with System.Runtime.CompilerServices.CallerXXX attributes.</Description>
+    <Copyright>© 2021, Alex Kalfakakos</Copyright>
+    <PackageTags>roslyn, analyzer, caller, optional, arguments, parameters</PackageTags>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StricterCallerAttributes.CodeFixes\StricterCallerAttributes.CodeFixes.csproj" />
+    <ProjectReference Include="..\StricterCallerAttributes\StricterCallerAttributes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <!-- Add the required packages -->
+  <ItemGroup>
+    <PackageReference Include="RoseLynn" Version="0.3.2" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="RoseLynn.Analyzers" Version="0.3.2" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="RoseLynn.CodeFixes" Version="0.3.2" PrivateAssets="all" GeneratePathProperty="true" />
+
+    <None Include="$(PKGRoseLynn)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
+    <None Include="$(PKGRoseLynn_Analyzers)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
+    <None Include="$(PKGRoseLynn_CodeFixes)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
+
+    <TfmSpecificPackageFile Include="$(OutputPath)\StricterCallerAttributes.dll" PackagePath="analyzers/dotnet/cs" />
+    <TfmSpecificPackageFile Include="$(OutputPath)\StricterCallerAttributes.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+  </ItemGroup>
+
+</Project>
